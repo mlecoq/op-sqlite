@@ -120,21 +120,22 @@ Pod::Spec.new do |s|
     :GCC_PREPROCESSOR_DEFINITIONS => "",
     :CLANG_CXX_LANGUAGE_STANDARD => "c++20",
     :GCC_OPTIMIZATION_LEVEL => "2",
+    :HEADER_SEARCH_PATHS => "\"$(PODS_TARGET_SRCROOT)/cpp\"",
   }
   
   exclude_files = []
   
   if use_sqlcipher then
     log_message.call("[OP-SQLITE] using SQLCipher")
-    exclude_files += ["cpp/sqlite3.c", "cpp/sqlite3.h", "cpp/libsql/bridge.c", "cpp/libsql/bridge.h", "cpp/libsql/bridge.cpp", "cpp/libsql/libsql.h", "ios/libsql.xcframework/**/*"]
+    exclude_files += ["cpp/sqlite3.c", "cpp/sqlite3.h", "cpp/opsqlite/libsql/bridge.c", "cpp/opsqlite/libsql/bridge.h", "cpp/opsqlite/libsql/bridge.cpp", "cpp/opsqlite/libsql/libsql.h", "ios/libsql.xcframework/**/*"]
     xcconfig[:GCC_PREPROCESSOR_DEFINITIONS] += " OP_SQLITE_USE_SQLCIPHER=1 HAVE_FULLFSYNC=1 SQLITE_HAS_CODEC SQLITE_TEMP_STORE=3 SQLITE_EXTRA_INIT=sqlcipher_extra_init SQLITE_EXTRA_SHUTDOWN=sqlcipher_extra_shutdown"
     s.dependency "OpenSSL-Universal"    
   elsif use_libsql then
     log_message.call("[OP-SQLITE] ⚠️ Using libsql. If you have libsql questions please ask in the Turso Discord server.")
-    exclude_files += ["cpp/sqlite3.c", "cpp/sqlite3.h", "cpp/sqlcipher/sqlite3.c", "cpp/sqlcipher/sqlite3.h", "cpp/bridge.h", "cpp/bridge.cpp"]
+    exclude_files += ["cpp/sqlite3.c", "cpp/sqlite3.h", "cpp/opsqlite/sqlcipher/sqlite3.c", "cpp/opsqlite/sqlcipher/sqlite3.h", "cpp/opsqlite/bridge.h", "cpp/opsqlite/bridge.cpp"]
   else
     log_message.call("[OP-SQLITE] using pure SQLite")
-    exclude_files += ["cpp/sqlcipher/sqlite3.c", "cpp/sqlcipher/sqlite3.h", "cpp/libsql/bridge.c", "cpp/libsql/bridge.h", "cpp/libsql/bridge.cpp", "cpp/libsql/libsql.h", "ios/libsql.xcframework/**/*"]
+    exclude_files += ["cpp/opsqlite/sqlcipher/sqlite3.c", "cpp/opsqlite/sqlcipher/sqlite3.h", "cpp/opsqlite/libsql/bridge.c", "cpp/opsqlite/libsql/bridge.h", "cpp/opsqlite/libsql/bridge.cpp", "cpp/opsqlite/libsql/libsql.h", "ios/libsql.xcframework/**/*"]
   end
 
    # Exclude xcframeworks that aren't being used

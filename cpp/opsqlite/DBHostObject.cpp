@@ -1,13 +1,13 @@
-#include "DBHostObject.h"
-#include "PreparedStatementHostObject.h"
+#include "opsqlite/DBHostObject.h"
+#include "opsqlite/PreparedStatementHostObject.h"
 #if OP_SQLITE_USE_LIBSQL
-#include "libsql/bridge.hpp"
+#include "opsqlite/libsql/bridge.hpp"
 #else
-#include "bridge.h"
+#include "opsqlite/bridge.h"
 #endif
-#include "logs.h"
-#include "macros.hpp"
-#include "utils.hpp"
+#include "opsqlite/logs.h"
+#include "opsqlite/macros.hpp"
+#include "opsqlite/utils.hpp"
 #include <iostream>
 #include <utility>
 

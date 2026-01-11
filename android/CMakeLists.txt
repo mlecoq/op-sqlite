@@ -8,11 +8,12 @@ include_directories(
 )
 
 if (USE_SQLCIPHER)
-  include_directories(../cpp/sqlcipher)
+  include_directories(../cpp/opsqlite/sqlcipher)
 endif()
 
 if (USE_LIBSQL)
   include_directories(src/main/jniLibs/include)
+  include_directories(../cpp/opsqlite/libsql)
 endif()
 
 separate_arguments(SQLITE_FLAGS_LIST UNIX_COMMAND "${SQLITE_FLAGS}")
@@ -24,18 +25,18 @@ add_definitions(
 add_library(
   ${PACKAGE_NAME}
   SHARED
-  ../cpp/OPSqlite.cpp
-  ../cpp/utils.cpp
-  ../cpp/OPThreadPool.cpp
-  ../cpp/SmartHostObject.cpp
-  ../cpp/PreparedStatementHostObject.cpp
-  ../cpp/DumbHostObject.cpp
-  ../cpp/DBHostObject.cpp
+  ../cpp/opsqlite/OPSqlite.cpp
+  ../cpp/opsqlite/utils.cpp
+  ../cpp/opsqlite/OPThreadPool.cpp
+  ../cpp/opsqlite/SmartHostObject.cpp
+  ../cpp/opsqlite/PreparedStatementHostObject.cpp
+  ../cpp/opsqlite/DumbHostObject.cpp
+  ../cpp/opsqlite/DBHostObject.cpp
   cpp-adapter.cpp
 )
 
 if (USE_SQLCIPHER)
-  target_sources(${PACKAGE_NAME} PRIVATE ../cpp/sqlcipher/sqlite3.h ../cpp/sqlcipher/sqlite3.c ../cpp/bridge.cpp ../cpp/bridge.h)
+  target_sources(${PACKAGE_NAME} PRIVATE ../cpp/opsqlite/sqlcipher/sqlite3.h ../cpp/opsqlite/sqlcipher/sqlite3.c ../cpp/opsqlite/bridge.cpp ../cpp/opsqlite/bridge.h)
 
   add_definitions(
     -DOP_SQLITE_USE_SQLCIPHER=1
@@ -47,13 +48,13 @@ if (USE_SQLCIPHER)
 
   find_package(openssl REQUIRED CONFIG)
 elseif (USE_LIBSQL)
-  target_sources(${PACKAGE_NAME} PRIVATE ../cpp/libsql/bridge.cpp)
+  target_sources(${PACKAGE_NAME} PRIVATE ../cpp/opsqlite/libsql/bridge.cpp)
 
   add_definitions(
     -DOP_SQLITE_USE_LIBSQL=1
   )
 else()
- target_sources(${PACKAGE_NAME} PRIVATE ../cpp/sqlite3.c ../cpp/bridge.cpp)
+ target_sources(${PACKAGE_NAME} PRIVATE ../cpp/sqlite3.c ../cpp/opsqlite/bridge.cpp)
 endif()
 
 if (USE_CRSQLITE)

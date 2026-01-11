@@ -1,9 +1,9 @@
-#include "bridge.hpp"
-#include "DumbHostObject.h"
-#include "SmartHostObject.h"
-#include "libsql.h"
-#include "logs.h"
-#include "utils.hpp"
+#include "opsqlite/libsql/bridge.hpp"
+#include "opsqlite/DumbHostObject.h"
+#include "opsqlite/SmartHostObject.h"
+#include <libsql.h>
+#include "opsqlite/logs.h"
+#include "opsqlite/utils.hpp"
 #include <filesystem>
 #include <iostream>
 #include <unordered_map>

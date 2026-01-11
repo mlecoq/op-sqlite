@@ -1,7 +1,7 @@
 #pragma once
 
-#include "SmartHostObject.h"
-#include "types.hpp"
+#include "opsqlite/SmartHostObject.h"
+#include "opsqlite/types.hpp"
 #include <any>
 #include <jsi/jsi.h>
 #include <stdio.h>

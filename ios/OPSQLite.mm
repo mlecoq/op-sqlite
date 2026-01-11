@@ -1,5 +1,5 @@
 #import "OPSQLite.h"
-#import "../cpp/OPSqlite.hpp"
+#import "opsqlite/OPSqlite.hpp"
 #import <React/RCTBridge+Private.h>
 #import <React/RCTLog.h>
 #import <React/RCTUtils.h>

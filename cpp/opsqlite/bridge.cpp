@@ -2,12 +2,12 @@
 // Allows a clear defined boundary between the JSI and the SQLite operations
 // so that threading operations are safe and contained within DBHostObject
 
-#include "bridge.h"
-#include "DBHostObject.h"
-#include "DumbHostObject.h"
-#include "SmartHostObject.h"
-#include "logs.h"
-#include "utils.hpp"
+#include "opsqlite/bridge.h"
+#include "opsqlite/DBHostObject.h"
+#include "opsqlite/DumbHostObject.h"
+#include "opsqlite/SmartHostObject.h"
+#include "opsqlite/logs.h"
+#include "opsqlite/utils.hpp"
 #include <filesystem>
 #include <iostream>
 #include <sstream>

@@ -4,8 +4,8 @@
 #include <jsi/jsi.h>
 #include <memory>
 #ifdef OP_SQLITE_USE_LIBSQL
-#include "libsql.h"
-#include "libsql/bridge.hpp"
+#include <libsql.h>
+#include "opsqlite/libsql/bridge.hpp"
 #else
 #ifdef __ANDROID__
 #include "sqlite3.h"
@@ -13,7 +13,7 @@
 #include <sqlite3.h>
 #endif
 #endif
-#include "OPThreadPool.h"
+#include "opsqlite/OPThreadPool.h"
 #include <string>
 #include <utility>
 
